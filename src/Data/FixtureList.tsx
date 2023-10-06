@@ -1,4 +1,4 @@
-import axios from "axios"; // Make sure to import axios if you haven't already
+/*import axios from "axios";
 
 async function getData() {
   const options = {
@@ -23,5 +23,6 @@ async function getData() {
     throw error; // Rethrow the error to handle it elsewhere if needed
   }
 }
-
 export default getData; // Export the function so you can use it in other modules
+
+ */
