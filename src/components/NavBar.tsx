@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import Login from "./Login.tsx";
 import Signup from "./Signup.tsx";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 
 function NavBar() {
   const [activeTab, setActiveTab] = useState("login");
 
-  const handleTabClick = (tabName) => {
+  const handleTabClick = (tabName: SetStateAction<string>) => {
     setActiveTab(tabName);
   };
   return (
@@ -29,7 +29,9 @@ function NavBar() {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon">
+              <i className="bi bi-list"></i>
+            </span>
           </button>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -82,7 +84,7 @@ function NavBar() {
       </nav>
       <div
         className="offcanvas offcanvas-start"
-        tabIndex="-1"
+        tabIndex={-1}
         id="offcanvasExample"
         aria-labelledby="offcanvasExampleLabel"
       >

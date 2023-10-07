@@ -1,22 +1,24 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [passw, setPassw] = useState("");
   const [dataInput, setDataInput] = useState("");
-  const submitThis = (e) => {
+  const submitThis = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const info = { email: email, passw: passw };
     if (email === "" || passw === "") {
       console.log("empty");
     } else {
       setDataInput([info]);
-      console.log(email);
+      console.log(info);
     }
   };
   return (
     <>
       <div className="container">
+        <h2>Login</h2>
+        <hr />
         <form action="" onSubmit={(e) => submitThis(e)}>
           <div className="col align-self-center ">
             <label htmlFor="email" className="form-label">
