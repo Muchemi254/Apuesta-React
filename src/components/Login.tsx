@@ -4,11 +4,11 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [passw, setPassw] = useState("");
   const [dataInput, setDataInput] = useState("");
+
   const submitThis = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const info = { email: email, passw: passw };
     if (email === "" || passw === "") {
-      console.log("empty");
     } else {
       setDataInput([info]);
       console.log(info);
@@ -22,7 +22,7 @@ const Login = () => {
         <form action="" onSubmit={(e) => submitThis(e)}>
           <div className="col align-self-center ">
             <label htmlFor="email" className="form-label">
-              Email
+              <h6>Email</h6>
             </label>
             <div className="input-group has-validation">
               <input
@@ -35,12 +35,12 @@ const Login = () => {
                 aria-describedby="inputGroupPrepend"
                 required
               />
-              <div className="invalid-feedback">Please choose a username.</div>
+              <div className="error"></div>
             </div>
           </div>
           <div className="col align-self-center">
             <label htmlFor="passw" className="form-label">
-              Password
+              <h6>Password</h6>
             </label>
             <div className="input-group has-validation">
               <input
@@ -53,7 +53,7 @@ const Login = () => {
                 aria-describedby="inputGroupPrepend"
                 required
               />
-              <div className="invalid-feedback">Please choose a username.</div>
+              <div className="error"></div>
             </div>
           </div>
           <div className="col mt-3">
