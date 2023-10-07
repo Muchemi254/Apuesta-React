@@ -1,7 +1,14 @@
 import { Link } from "react-router-dom";
 import Login from "./Login.tsx";
+import Signup from "./Signup.tsx";
+import { useState } from "react";
 
 function NavBar() {
+  const [activeTab, setActiveTab] = useState("login");
+
+  const handleTabClick = (tabName) => {
+    setActiveTab(tabName);
+  };
   return (
     <div>
       <nav
@@ -80,9 +87,24 @@ function NavBar() {
         aria-labelledby="offcanvasExampleLabel"
       >
         <div className="offcanvas-header">
-          <h5 className="offcanvas-title" id="offcanvasExampleLabel">
-            Login
-          </h5>
+          <ul className="nav nav-tabs nav-justified">
+            <li className="nav-item">
+              <button
+                className={`nav-link ${activeTab === "login" ? "active" : ""}`}
+                onClick={() => handleTabClick("login")}
+              >
+                login
+              </button>
+            </li>
+            <li className="nav-item">
+              <button
+                className={`nav-link ${activeTab === "signup" ? "active" : ""}`}
+                onClick={() => handleTabClick("signup")}
+              >
+                signup
+              </button>
+            </li>
+          </ul>
           <button
             type="button"
             className="btn-close"
@@ -91,7 +113,7 @@ function NavBar() {
           ></button>
         </div>
         <div className="offcanvas-body">
-          <Login />
+          {activeTab === "login" ? <Login /> : <Signup />}
         </div>
       </div>
     </div>
