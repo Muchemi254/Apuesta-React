@@ -26,6 +26,8 @@ const Signup = () => {
   return (
     <>
       <div className="container">
+        <h2>Signup</h2>
+        <hr />
         <form action="" onSubmit={(e) => submitThis(e)}>
           <div className="col align-self-center ">
             <label htmlFor="email" className="form-label">
@@ -43,24 +45,6 @@ const Signup = () => {
                 required
               />
               <div className="invalid-feedback">Please fill email</div>
-            </div>
-          </div>
-          <div className="col align-self-center">
-            <label htmlFor="passw" className="form-label">
-              Password
-            </label>
-            <div className="input-group has-validation">
-              <input
-                className="form-control"
-                type="password"
-                name="passw"
-                id="passw"
-                value={passw}
-                onChange={(e) => setPassw(e.target.value)}
-                aria-describedby="inputGroupPrepend"
-                required
-              />
-              <div className="invalid-feedback">Please fill password</div>
             </div>
           </div>
           <div className="col align-self-center ">
@@ -97,6 +81,24 @@ const Signup = () => {
                 required
               />
               <div className="invalid-feedback">Please fill last name.</div>
+            </div>
+          </div>
+          <div className="col align-self-center">
+            <label htmlFor="passw" className="form-label">
+              Password
+            </label>
+            <div className="input-group has-validation">
+              <input
+                className="form-control"
+                type="password"
+                name="passw"
+                id="passw"
+                value={passw}
+                onChange={(e) => setPassw(e.target.value)}
+                aria-describedby="inputGroupPrepend"
+                required
+              />
+              <div className="invalid-feedback">Please fill password</div>
             </div>
           </div>
           <div className="col align-self-center ">
