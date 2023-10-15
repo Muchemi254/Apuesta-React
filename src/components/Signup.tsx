@@ -1,4 +1,38 @@
 import { useState } from "react";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+
+import { app } from "../../public/firebase.tsx";
+import { getDatabase, ref, set } from "firebase/database";
+
+const auth = getAuth(app);
+const database = getDatabase(app);
+
+const registerWithEmailAndPassword = async (info: {
+  email: string;
+  passw: string;
+  firstname: string;
+  lastname: string;
+  confirmpassw: string;
+}) => {
+  try {
+    const res = await createUserWithEmailAndPassword(
+      auth,
+      info.email,
+      info.passw,
+    );
+    const user = res.user;
+    const userId = user.uid;
+
+    await set(ref(database, "users/" + userId), {
+      email: info.email,
+      firstname: info.firstname,
+      lastname: info.lastname,
+    });
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -20,8 +54,11 @@ const Signup = () => {
       console.log("empty");
     } else {
       setDataInput([info]);
+      registerWithEmailAndPassword(info);
       console.log(email);
     }
+
+    //register new user
   };
   return (
     <>

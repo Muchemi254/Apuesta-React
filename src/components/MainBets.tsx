@@ -2,7 +2,7 @@ import React from "react";
 
 const MainBets = () => {
   return (
-    <div className="col-6">
+    <div className="col border-start border-end">
       <img
         src="/vite.svg"
         className="rounded"
