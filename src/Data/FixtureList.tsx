@@ -1,28 +1,64 @@
-/*import axios from "axios";
+import { useEffect, useState } from "react";
+import { getDatabase, ref, get } from "firebase/database";
+import { app } from "../../public/firebase.tsx";
 
-async function getData() {
-  const options = {
-    method: "GET",
-    url: "https://api-football-v1.p.rapidapi.com/v3/fixtures",
-    params: {
-      league: "39",
-      season: "2023",
-    },
-    headers: {
-      "X-RapidAPI-Key": "a030dda9b5msh5e55e21a12d0abcp1bc6fejsn640ee70d267f",
-      "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
-    },
-  };
+const database = getDatabase(app);
+let countryNames = null;
 
-  try {
-    const response = await axios.request(options);
-    console.log(response.data);
-    return response.data; // Return the data from the response
-  } catch (error) {
-    console.error(error);
-    throw error; // Rethrow the error to handle it elsewhere if needed
-  }
+function FixtureList() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    // Reference the root of your database
+    const rootRef = ref(database, "API-Endpoints");
+
+    // Fetch the data
+    get(rootRef)
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          // The data exists, you can access it as a JavaScript object
+          const fetchedData = snapshot.val();
+          setData(fetchedData.leagues);
+          countryNames = Object.keys(fetchedData.leagues);
+          countryNames.forEach((countryName) => {
+            console.log(countryName);
+          });
+        } else {
+          console.log("No data available.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error getting data:", error);
+      });
+  }, []); // Empty dependency array, so this effect runs only once
+
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+
+  return (
+    <div className="col ">
+      <h4>Top Leagues</h4>
+      <ul className="list-group list-group-flush justify-content-center">
+        {countryNames ? (
+          countryNames.map((countryName, index) => (
+            <li
+              key={countryName}
+              className={
+                selectedIndex === index
+                  ? `list-group-item active`
+                  : "list-group-item"
+              }
+              onClick={() => setSelectedIndex(index)}
+              style={{ cursor: "pointer" }}
+            >
+              {countryName}
+            </li>
+          ))
+        ) : (
+          <li className="list-group-item">No countries available</li>
+        )}
+      </ul>
+    </div>
+  );
 }
-export default getData; // Export the function so you can use it in other modules
 
- */
+export default FixtureList;

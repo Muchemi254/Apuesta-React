@@ -5,9 +5,9 @@ const MainBets = () => {
   const { t } = useTranslation(); // Initialize the t function for translations
 
   return (
-    <div className="col-6">
+    <div className="col border-start border-end">
       <img
-        src="../../public/Image6.jpeg"
+        src="/vite.svg"
         className="rounded"
         alt="Responsive image"
         style={{ width: "100%", height: "200px" }}
