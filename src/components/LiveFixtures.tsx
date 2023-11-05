@@ -1,18 +1,12 @@
 import React from "react";
 import { useTranslation } from "react-i18next"; // Import useTranslation from react-i18next
 
-const MainBets = () => {
+const LiveFixtures = () => {
   const { t } = useTranslation(); // Initialize the t function for translations
 
   return (
     <div className="col-6">
-      <img
-        src="../../public/Image6.jpeg"
-        className="rounded"
-        alt="Responsive image"
-        style={{ width: "100%", height: "200px" }}
-      />
-      <h4>{t("Upcoming Fixtures")}</h4> {/* Translate "Upcoming Matches" */}
+      <h4>{t("Live Matches")}</h4> {/* Translate "Upcoming Matches" */}
       <ul className="container-fluid">
         <li className="list-group-item">
           <div>
@@ -133,4 +127,4 @@ const MainBets = () => {
   );
 };
 
-export default MainBets;
+export default LiveFixtures;

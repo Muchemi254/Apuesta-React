@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
+import { SetStateAction, useState } from "react";
+import { useTranslation } from "react-i18next"; // Import useTranslation from react-i18next
 import Login from "./Login.tsx";
 import Signup from "./Signup.tsx";
-import { SetStateAction, useState } from "react";
+import LanguageSelector from '../pages/LanguageSelector.tsx'; 
 
 function NavBar() {
   const [activeTab, setActiveTab] = useState("login");
+  const { t } = useTranslation(); // Initialize the t function
 
   const handleTabClick = (tabName: SetStateAction<string>) => {
     setActiveTab(tabName);
@@ -17,7 +20,7 @@ function NavBar() {
       >
         <div className="container-fluid">
           <Link className="navbar-brand" to="/home">
-            Apuesta futuro
+            {t("Betvista")} {/* Translate "Apuesta futuro" */}
           </Link>
 
           <button
@@ -34,42 +37,48 @@ function NavBar() {
             </span>
           </button>
 
+
+
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <Link className="nav-link" to="/home">
-                  Home
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/about">
-                  About
-                </Link>
-              </li>
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link className="nav-link" to="/home">
+                {t("Home")} {/* Translate "Home" */}
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/about">
+                {t("About")} {/* Translate "About" */}
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/live">
+                {t("Live")} {/* Translate "Live" */}
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/contact">
+                {t("Contact")} {/* Translate "Contact" */}
+              </Link>
+            </li>
+            <li className="nav-item">
+              <LanguageSelector/>
+            </li>
+            <li className="nav-item">
+              <button
+                className="nav-link"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasExample"
+                aria-controls="offcanvasExample"
+              >
+                {t("Login")} {/* Translate "Login" */}
+              </button>
+            </li>
+          </ul>
+          
 
-              <li className="nav-item">
-                <Link className="nav-link" to="/live">
-                  Live
-                </Link>
-              </li>
 
-              <li className="nav-item">
-                <Link className="nav-link" to="/contact">
-                  Contact
-                </Link>
-              </li>
-              <li className="nav-item">
-                <button
-                  className="nav-link"
-                  type="button"
-                  data-bs-toggle="offcanvas"
-                  data-bs-target="#offcanvasExample"
-                  aria-controls="offcanvasExample"
-                >
-                  Login
-                </button>
-              </li>
-            </ul>
 
             <form className="d-flex" role="search">
               <input
@@ -97,11 +106,11 @@ function NavBar() {
         <div className="offcanvas-header">
           <ul className="nav nav-tabs nav-justified">
             <li className="nav-item">
-              <button
+            <button
                 className={`nav-link ${activeTab === "login" ? "active" : ""}`}
                 onClick={() => handleTabClick("login")}
               >
-                login
+                {t("login")} {/* Translate "login" */}
               </button>
             </li>
             <li className="nav-item">
@@ -109,7 +118,7 @@ function NavBar() {
                 className={`nav-link ${activeTab === "signup" ? "active" : ""}`}
                 onClick={() => handleTabClick("signup")}
               >
-                signup
+                {t("signup")} {/* Translate "signup" */}
               </button>
             </li>
           </ul>

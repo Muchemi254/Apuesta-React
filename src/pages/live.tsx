@@ -1,10 +1,15 @@
 import NavBar from "../components/NavBar.tsx";
+import LiveFixtures from "../components/LiveFixtures.tsx"
+import ListGroup from "../components/ListGroup.tsx";
+import MyBets from "../components/MyBets.tsx";
 
 const Live = () => {
   return (
-    <div>
+    <div className="row align-items-start">
       <NavBar />
-      <h1>Live</h1>
+      <ListGroup />
+      <LiveFixtures/>
+      <MyBets />
     </div>
   );
 };
