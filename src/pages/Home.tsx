@@ -1,50 +1,26 @@
+import React, { useState } from "react";
 import NavBar from "../components/NavBar.tsx";
-import "https://widgets.api-sports.io/2.0.3/widgets.js";
-import ListGroup from "../components/ListGroup.tsx";
+import FixtureList from "../Data/FixtureList.tsx";
 import MainBets from "../components/MainBets.tsx";
 import MyBets from "../components/MyBets.tsx";
-//import getData from "../Data/FixtureList.tsx";
+import FootBar from "../components/FootBar.tsx";
 
 const Home = () => {
-  /*const [fixtureData, setFixtureData] = useState(null); // Initialize fixtureData as null
-      
-                                useEffect(() => {
-                                  // Use an async function within useEffect to fetch the data
-                                  const fetchData = async () => {
-                                    try {
-                                      const response = await getData();
-                                      setFixtureData(response.response); // Set fixtureData in the component's state
-                                    } catch (error) {
-                                      console.error(error);
-                                    }
-                                  };
-      
-                                  fetchData(); // Call the fetchData function within useEffect
-                                }, []);
-                                */
-
   return (
     <div>
       <NavBar />
       <div className="row align-items-start">
-        <ListGroup />
-        <MainBets />
-        <MyBets />
-      </div>
-
-      {/*fixtureData ? ( // Render data if fixtureData is not null
-        <div>
-          <h1>Fixture List</h1>
-          <div className="fixture-list">
-            {fixtureData.map((fixture: never, index: never) => (
-              <FixtureCard key={index} fixture={fixture} />
-            ))}
-          </div>
+        <div className="col-md-3 d-md-block d-none">
+          <FixtureList />
         </div>
-      ) : (
-        // Render a loading message or handle cases where data is not available yet
-        <p>Loading...</p>
-      ) */}
+        <div className="col-md-6">
+          <MainBets />
+        </div>
+        <div className="col-md-3 d-md-block d-none">
+          <MyBets />
+        </div>
+      </div>
+      <FootBar />
     </div>
   );
 };
