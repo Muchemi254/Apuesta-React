@@ -3,13 +3,9 @@ import { SetStateAction, useState } from "react";
 import { useTranslation } from "react-i18next"; // Import useTranslation from react-i18next
 import Login from "./Login.tsx";
 import Signup from "./Signup.tsx";
-<<<<<<< HEAD
-import LanguageSelector from '../pages/LanguageSelector.tsx'; 
-=======
-import { SetStateAction, useState } from "react";
+import LanguageSelector from '../pages/LanguageSelector.tsx'
 import { BiMenu } from "react-icons/bi";
-import FixtureList from "../Data/FixtureList.tsx";
->>>>>>> c9aedbec211a6f426ffba162401b56d295e625f5
+import FixtureList from "../Data/FixtureList.tsx"
 
 function NavBar() {
   const [activeTab, setActiveTab] = useState("login");
@@ -20,10 +16,10 @@ function NavBar() {
   };
   return (
     <div>
+        
       <nav
         className="navbar bg-dark navbar-expand-lg bg-body-tertiary"
-        data-bs-theme="dark"
-      >
+        data-bs-theme="dark">
         <div className="container-fluid">
           <button
             className="btn d-md-none"
@@ -54,7 +50,7 @@ function NavBar() {
           </button>
 
 
-<<<<<<< HEAD
+
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -93,28 +89,9 @@ function NavBar() {
               </button>
             </li>
           </ul>
-          
 
 
-=======
-              <li className="nav-item">
-                <Link className="nav-link" to="/contact">
-                  Contact
-                </Link>
-              </li>
-              <li className="nav-item">
-                <button
-                  className="nav-link"
-                  type="button"
-                  data-bs-toggle="offcanvas"
-                  data-bs-target="#offcanvasLogin"
-                  aria-controls="offcanvasLogin"
-                >
-                  Login
-                </button>
-              </li>
-            </ul>
->>>>>>> c9aedbec211a6f426ffba162401b56d295e625f5
+            
 
             <form className="d-flex" role="search">
               <input
