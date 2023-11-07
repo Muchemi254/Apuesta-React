@@ -209,11 +209,12 @@ const { t, i18n } = useTranslation(); // Initialize the t function
     document.title= t('Betvista')
   }, [currentLanguage, t])
   return (
-    <div className="container">
-      <div className="d-flex justify-content-end">
-        <div className="dropdown">
+        <div>
+
           <button className="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+
             <GlobeIcon/>{/* Remove width and height props */}
+            <span>{t('Language')}</span>
           </button>
           <ul className="dropdown-menu" style={{ maxHeight: '500px', overflowY: 'auto', overflowX: 'hidden'}}>
             <li><span className="dropdown-item-text">{t('Language')}</span></li>
@@ -227,8 +228,6 @@ const { t, i18n } = useTranslation(); // Initialize the t function
             ))}
           </ul>
         </div>
-      </div>
-    </div>
   );
 };
 

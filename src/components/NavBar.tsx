@@ -1,15 +1,47 @@
 import { Link } from "react-router-dom";
-import { SetStateAction, useState } from "react";
+import { SetStateAction, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next"; // Import useTranslation from react-i18next
 import Login from "./Login.tsx";
 import Signup from "./Signup.tsx";
 import LanguageSelector from '../pages/LanguageSelector.tsx'
 import { BiMenu } from "react-icons/bi";
 import FixtureList from "../Data/FixtureList.tsx"
+import { app } from "../../public/firebase.tsx";
+import { getAuth, signOut } from "firebase/auth";
+
+
+const auth = getAuth(app);
 
 function NavBar() {
   const [activeTab, setActiveTab] = useState("login");
   const { t } = useTranslation(); // Initialize the t function
+
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    // Add an authentication state change listener
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        // User is signed in
+        setUser(authUser);
+      } else {
+        // User is signed out
+        setUser(null);
+      }
+    });
+
+    // Cleanup the listener when the component unmounts
+    return () => unsubscribe();
+  }, []);
+
+  const handleSignOut = () => {
+    signOut(auth) // Call the signOut method to log the user out
+        .then(() => {
+          // Handle the sign-out success, if needed
+        })
+        .catch((error) => {
+          // Handle sign-out errors, if any
+        });
+  };
 
   const handleTabClick = (tabName: SetStateAction<string>) => {
     setActiveTab(tabName);
@@ -78,15 +110,27 @@ function NavBar() {
               <LanguageSelector/>
             </li>
             <li className="nav-item">
-              <button
-                className="nav-link"
-                type="button"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasExample"
-                aria-controls="offcanvasExample"
-              >
-                {t("Login")} {/* Translate "Login" */}
-              </button>
+              {user ? (
+                  // Render the "Logout" button if the user is signed in
+                  <button
+                      className="nav-link"
+                      type="button"
+                      onClick={handleSignOut}
+                  >
+                    Logout
+                  </button>
+              ) : (
+                  // Render the "Login" button if the user is signed out
+                  <button
+                      className="nav-link"
+                      type="button"
+                      data-bs-toggle="offcanvas"
+                      data-bs-target="#offcanvasLogin"
+                      aria-controls="offcanvasExample"
+                  >
+                    {t("Login")} {/* Translate "Login" */}
+                  </button>
+              )}
             </li>
           </ul>
 

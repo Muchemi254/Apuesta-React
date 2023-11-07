@@ -145,7 +145,7 @@ const Signup = () => {
             <div className="input-group has-validation">
               <input
                 className="form-control"
-                type="text"
+                type="password"
                 name="confirmpassw"
                 id="confirmpassw"
                 value={confirmpassw}
