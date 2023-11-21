@@ -14,7 +14,9 @@ import Backend from 'i18next-locize-backend';
 import "bootstrap/dist/js/bootstrap.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import "/node_modules/flag-icons/css/flag-icons.min.css"; /*npm install flag-icons*/
+import "/node_modules/flag-icons/css/flag-icons.min.css";
+import MyBets from "./components/MyBets.tsx";
+import MyBetsMain from "./pages/MyBetsMain.tsx"; /*npm install flag-icons*/
 
 
 
@@ -50,6 +52,7 @@ function App() {
         <Route path="/live" element={<Live />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/mybets" element={<MyBetsMain />} />
         <Route path ="/LanguageSelector"element={<LanguageSelector />} />
       </Routes>
     </Router>
